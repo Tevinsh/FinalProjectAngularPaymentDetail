@@ -10,7 +10,7 @@ import { PaymentDetailPut, PaymentDetailPost } from './payment-details-model';
 })
 export class PaymentDetailsService {
   paymentDetailList : any;
-  endpoint: string = 'https://tevin-finalproject-angular.herokuapp.com/';
+  endpoint: string = 'https://tevinpaymentdetailsapi.herokuapp.com/';
   
   constructor(private http: HttpClient) { }
   

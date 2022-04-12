@@ -10,7 +10,7 @@ import { signupUser } from './interface.signup.user';
 })
 export class AuthService {
   paymentDetailList : any;
-  endpoint: string = 'https://tevin-finalproject-angular.herokuapp.com/';
+  endpoint: string = 'https://tevinpaymentdetailsapi.herokuapp.com/';
   
   
   signIn(user: User): Observable<any> {
