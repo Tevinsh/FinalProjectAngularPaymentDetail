@@ -1,0 +1,15 @@
+<!-- <button (click)="post()"class="btn btn-sm btn-success">Post</button>
+<p>{{result}}</p> -->
+<div class="container">
+<div class="jumbotron py-5">
+    <h1 class="display-4 text-center">Payment Detail Register</h1>
+</div>
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="footer">
+    <div class="container my-auto">
+        <span>Copyright &copy; {{year}} Pangeran Tevin Shidqi</span>
+            <a *ngIf="loggedin" class="float-end" (click)="logout()">Log out</a>
+    </div>
+</footer>

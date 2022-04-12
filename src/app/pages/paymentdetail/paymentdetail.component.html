@@ -1,0 +1,58 @@
+
+    <div class="row">
+        <div class="col-md-6">
+            <form [formGroup]="PDForm" (ngSubmit)="post()" autocomplete="off">
+            <div class="form-group my-1">
+                <label>CARD OWNER NAME</label>
+                <input class="form-control form-control-lg" placeholder="Full Name" name="cardOwnerName" formControlName="cardOwnerName">
+                <small style="color: red;" *ngIf="PDForm.controls.cardOwnerName.invalid && (PDForm.controls.cardOwnerName.dirty || PDForm.controls.cardOwnerName.touched)">Please enter valid Card Owner Name</small>
+            </div>
+            <div class="form-group my-1">
+                <label>CARD NUMBER</label>
+                <input class="form-control form-control-lg" placeholder="16 Digit Number" name="cardNumber" maxlength="16" minlength="15" formControlName="cardNumber">
+                <small style="color: red;" *ngIf="PDForm.controls.cardNumber.invalid && (PDForm.controls.cardNumber.dirty || PDForm.controls.cardNumber.touched)">Please enter valid Card Number</small>
+            </div>
+            <div class="row my-1">
+                <div class="form-group col">
+                    <label>SECURITY CODE</label>
+                    <input class="form-control form-control-lg" placeholder="Security Code" name="cardOwnerName" formControlName="securityCode">
+                    <small style="color: red;" *ngIf="PDForm.controls.securityCode.invalid && (PDForm.controls.securityCode.dirty || PDForm.controls.securityCode.touched)">Please enter valid Security Code</small>
+                </div>
+                <div class="form-group col">
+                    <label>VALID THROUGH</label>
+                    <input class="form-control form-control-lg" placeholder="MM/YY" name="cardOwnerName" maxlength="5" formControlName="expirationDate">
+                    <!-- <small style="color: red;">Expiration Date Cannot be empty</small> -->
+                    <small style="color: red;" *ngIf="PDForm.controls.expirationDate.invalid && (PDForm.controls.expirationDate.dirty || PDForm.controls.expirationDate.touched)">Please Enter valid Enpiration date</small>
+                </div>
+            </div>
+            <div>
+                <button *ngIf="PDForm.value.paymentDetailId == 0" type="submit" class="btn btn-lg btn-primary my-1" style="width: 100%;" prevent-double-submit> SUBMIT </button>
+                <button *ngIf="PDForm.value.paymentDetailId != 0" type="submit" class="btn btn-lg btn-primary my-1" style="width: 100%;" prevent-double-submit> UPDATE </button>
+                <button *ngIf="PDForm.value.paymentDetailId != 0" (click)="resetForm()" class="btn btn-lg btn-primary my-1" style="width: 100%;"> RESET FORM </button>
+
+
+            </div>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Card Owner Name</th>
+                    <th scope="col">Card Number</th>
+                    <th scope="col">Exp.date</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let list of result" #id [attr.ID]="list.paymentDetailId">
+                    <td (click)="populatePD(list)">{{list.cardOwnerName}}</td>
+                    <td (click)="populatePD(list)">{{list.cardNumber}}</td>
+                    <td (click)="populatePD(list)">{{list.expirationDate}}</td>
+                    <td><button (click)="removePD(id.getAttribute('ID'))" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
