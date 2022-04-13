@@ -1,20 +1,23 @@
 <div class="mx-auto" style="width: 300px;">
     <div class="card py-3" style="height: 100%;">
-        <div class="card-body text-center">
+        <div class="card-body">
           <h3>Sign Up</h3>
           <form [formGroup]="userform" (ngSubmit)="onSubmit(userform)">
             <div class="form-group mt-4 mb-2">
                 <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username" formControlName="username">
+                <small class="text-left" style="color: red; font-size: smaller;" *ngIf="userform.controls.username.invalid && (userform.controls.username.dirty || userform.controls.username.touched)">Please enter username</small>
             </div>
             <div class="form-group my-2">
                 <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email" formControlName="email">
+                <small class="text-left" style="color: red; font-size: smaller;" *ngIf="userform.controls.email.invalid && (userform.controls.email.dirty || userform.controls.email.touched)">Please Enter valid email</small>
             </div>
             <div class="form-group my-2">
                 <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+                <small class="text-justify" style="color: red; font-size: smaller;" *ngIf="userform.controls.password.invalid && (userform.controls.password.dirty || userform.controls.password.touched)">uppercase,lowercase,and special char required</small>
             </div>
             <button class="btn btn-md btn-primary" type="submit" style="width: 100%;">Sign Up</button>
           </form>
-          <a routerLink="/login"><small>Back to login</small></a>
         </div>
+        <a routerLink="/login" class="text-center"><small>Back to login</small></a>
       </div>
 </div>

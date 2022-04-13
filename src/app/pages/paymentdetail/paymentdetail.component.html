@@ -36,23 +36,25 @@
         </div>
 
         <div class="col-md-6">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">Card Owner Name</th>
-                    <th scope="col">Card Number</th>
-                    <th scope="col">Exp.date</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let list of result" #id [attr.ID]="list.paymentDetailId">
-                    <td (click)="populatePD(list)">{{list.cardOwnerName}}</td>
-                    <td (click)="populatePD(list)">{{list.cardNumber}}</td>
-                    <td (click)="populatePD(list)">{{list.expirationDate}}</td>
-                    <td><button (click)="removePD(id.getAttribute('ID'))" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Card Owner Name</th>
+                        <th scope="col">Card Number</th>
+                        <th scope="col">Exp.date</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let list of result" #id [attr.ID]="list.paymentDetailId">
+                        <td (click)="populatePD(list)">{{list.cardOwnerName}}</td>
+                        <td (click)="populatePD(list)">{{list.cardNumber}}</td>
+                        <td (click)="populatePD(list)">{{list.expirationDate}}</td>
+                        <td><button (click)="removePD(id.getAttribute('ID'))" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
