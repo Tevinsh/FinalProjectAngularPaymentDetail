@@ -46,8 +46,6 @@ export class PaymentdetailComponent implements OnInit {
 
 
   post(){
-      console.log("functionpostcalled");
-    console.log(this.PDForm);
     if(!this.PDForm.invalid){
       if(!this.PDForm.value.paymentDetailId){
         this.PDPost = {
@@ -57,7 +55,6 @@ export class PaymentdetailComponent implements OnInit {
           securityCode : this.PDForm.value.securityCode
         }
           this.paymentDetailsService.postPD(this.PDPost).subscribe((res)=>{
-           console.log(JSON.stringify(res));
            this.toastr.success('Payment Detail Post Success!');
            this.resetForm();
            this.refreshlist();
@@ -71,19 +68,16 @@ export class PaymentdetailComponent implements OnInit {
           securityCode : this.PDForm.value.securityCode
         }
           this.paymentDetailsService.putPD(this.PDPut,this.PDForm.value.paymentDetailId).subscribe((res)=>{
-            console.log(JSON.stringify(res));
             this.toastr.success('Payment Detail Update Success!');
             this.resetForm();
             this.refreshlist();
          }); 
-      }
-      
+      }      
     } else {
       this.toastr.error('Invalid input');
     }
   }
    removePD(id: any){
-     console.log(id);
      this.paymentDetailsService.delPD(id).subscribe((res)=>{
        this.toastr.error('Deleted Successfully');
        this.refreshlist();
@@ -92,12 +86,9 @@ export class PaymentdetailComponent implements OnInit {
   refreshlist(){
     this.paymentDetailsService.getPD().subscribe((res)=>{
       this.result = res;
-      console.log(this.result[0].paymentDetailId)
     });
   }
   populatePD(list:PaymentDetailPut){
-    console.log(JSON.stringify(list));
-    
     this.PDForm.setValue({
       paymentDetailId: list.paymentDetailId,  
       cardOwnerName: list.cardOwnerName,
@@ -105,7 +96,6 @@ export class PaymentdetailComponent implements OnInit {
       expirationDate : list.expirationDate,
       securityCode : list.securityCode
     })
-    console.log(this.PDForm.value.paymentDetailId);
   }
   resetForm(){
     this.PDForm.reset();
@@ -116,5 +106,4 @@ export class PaymentdetailComponent implements OnInit {
   ngOnInit(): void {
     this.refreshlist();
   }
-
 }

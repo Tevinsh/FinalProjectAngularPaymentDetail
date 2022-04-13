@@ -54,11 +54,13 @@ export class AuthService {
 
   handleError(error: HttpErrorResponse) {
     let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      msg = error.error.message;
-    }else{
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
+    console.log(error.error.errors[0]);
+    msg = error.error.errors[0];
+    // if (error.error instanceof ErrorEvent) {
+    //   msg = error.error.message;
+    // }else{
+    //   msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    // }
     return throwError(msg);
   }
 

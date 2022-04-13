@@ -24,16 +24,15 @@ export class SignupComponent implements OnInit {
     this.user.username = this.userform.value.username;
     this.user.email = this.userform.value.email;
     this.user.password = this.userform.value.password;
-    console.log(this.user);
-    this.auth.signUp(this.user).subscribe((res)=>{
-      console.log(JSON.stringify(res));
+    this.auth.signUp(this.user).subscribe(
+      res=>{
       this.router.navigate(['/login']);
-   });
+      }, error => {
+        this.toastr.error(error);
+      });
     }else {
       this.toastr.error('invalid input');
     }
-    
-    console.log(userform);
   }
   constructor(public auth : AuthService,public router : Router,public toastr : ToastrService) { }
 

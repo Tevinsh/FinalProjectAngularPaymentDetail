@@ -15,10 +15,13 @@ export class AppComponent {
     this.auth.destroyAuthorizationToken();
     this.route.navigate(['/login']);
   }
-  constructor(public auth : AuthService,public route : Router) {}
-  ngDoCheck(){
+  refresh(){
     if(this.auth.isAuthorized()){
       this.loggedin = true;
     }
+  }
+  constructor(public auth : AuthService,public route : Router) {}
+  ngDoCheck(){
+    this.refresh();
   }
 }

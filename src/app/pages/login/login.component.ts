@@ -22,17 +22,16 @@ export class LoginComponent implements OnInit {
     if(!this.userform.invalid){
     this.user.email = this.userform.value.email;
     this.user.password = this.userform.value.password;
-    console.log(this.user);
-    this.auth.signIn(this.user).subscribe((res)=>{
-      console.log(JSON.stringify(res));
+    this.auth.signIn(this.user).subscribe(
+      res=>{
       localStorage.setItem('token',res.token);
       this.router.navigate(['/paymentdetail']);
-   });
+      },error=>{
+        this.toastr.error(error);
+      });
     }else{
       this.toastr.error('invalid input');
     }
-    
-    console.log(userform);
   }
 
   destroytoken(){
